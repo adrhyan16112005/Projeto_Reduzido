@@ -2,9 +2,9 @@
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import styles from './Arquivo.module.css';
 
-import Home from './pages/Home';
-import Perfil from './pages/Perfil';
-import Reservas from './pages/Reservas';
+import Home from './pages/Home/Home'; 
+import Perfil from './pages/perfil/Perfil';
+import Reservas from './pages/perfil/Reservas';
 
 function Arquivo() {
     return (
