@@ -1,13 +1,9 @@
-import React from 'react';
-import ConsultarMesas from './pages/ConsultarMesas';
-import ListarMinhasReservas from './pages/ListarMinhasReservas';
+import AppRoutes from "./Routes.jsx";
 
 function App() {
   return (
     <div>
-      <ConsultarMesas />
-      <hr />
-      <ListarMinhasReservas />
+      <AppRoutes />
     </div>
   );
 }
