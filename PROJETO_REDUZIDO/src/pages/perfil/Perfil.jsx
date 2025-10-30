@@ -1,12 +1,19 @@
-import styles from './Perfil.module.css';
+import React from "react";
+import styles from "./Perfil.module.css";
 
-function Perfil() {
-    return (
-        <div className={styles.container}>
-            <h1 className={styles.title}>Seu Perfil</h1>
-            <p className={styles.info}>Aqui você pode visualizar e editar suas informações pessoais.</p>
-        </div>
-    );
-}
+const Perfil = () => {
+  const usuario = {
+    nome: "João da Silva",
+    email: "joao@email.com",
+  };
+
+  return (
+    <div className={styles.container}>
+      <h2>Meu Perfil</h2>
+      <p><strong>Nome:</strong> {usuario.nome}</p>
+      <p><strong>E-mail:</strong> {usuario.email}</p>
+    </div>
+  );
+};
 
 export default Perfil;

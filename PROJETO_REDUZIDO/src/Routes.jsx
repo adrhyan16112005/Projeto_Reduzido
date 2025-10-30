@@ -1,15 +1,17 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Home from "./pages/Home/Home";      
+// src/Routes.jsx
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Reservas from "./pages/Reservas/Reservas";
 
-function Routes(){
-    return(
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home/>}></Route>
-<Route path="/Reservas" element={<Reservas/>}></Route>
-
-                            </Routes>
-        </BrowserRouter>
-    )
+function AppRoutes() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Reservas" element={<Reservas />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-export default Routes
+
+export default AppRoutes;
