@@ -1,22 +1,24 @@
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
-  background-color: #fffaf5;
-  color: #333;
+  background-color: var(--verde-soft);
+  color: var(--text-dark);
 }
 
+/* CORREÇÃO PRINCIPAL */
 #root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
   min-height: 100vh;
+  margin: 0 auto;
+  display: block;
 }
 
+/* Loader opcional */
 .loading {
   width: 50px;
   height: 50px;
-  border: 4px solid #ccc;
-  border-top-color: #c62828;
+  border: 4px solid var(--verde-light);
+  border-top-color: var(--verde-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

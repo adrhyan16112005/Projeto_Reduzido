@@ -24,7 +24,7 @@ const Cadastro = ({ setAuthToken }) => {
   };
 
   return (
-    <div className={styles.cadastroContainer}>
+    <div className={styles.form-container}>
       <h2>Cadastro</h2>
       {error && <p className={styles.errorMessage}>{error}</p>}
       <form onSubmit={handleCadastro} className={styles.form}>

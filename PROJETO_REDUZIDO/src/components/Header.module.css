@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--verde-primary);
+  padding: 15px 25px;
+  color: white;
+  border-bottom: 4px solid var(--verde-light);
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav a {
+  color: white;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  color: var(--verde-soft);
+  text-decoration: underline;
+}

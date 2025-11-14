@@ -1,44 +1,51 @@
 .listar-container {
-padding: 20px;
+  padding: 30px;
+  background-color: var(--white);
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto;
+  border-radius: 12px;
+  border-left: 5px solid var(--verde-primary);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 table {
-width: 100%;
-border-collapse: collapse;
-}
-
-th, td {
-border: 1px solid #ddd;
-padding: 8px;
-text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
 }
 
 th {
-background-color: #007bff;
-color: white;
+  background-color: var(--verde-primary);
+  color: white;
+  padding: 12px;
+}
+
+td {
+  padding: 10px;
+  background-color: var(--verde-soft);
+  border-bottom: 2px solid var(--verde-pastel);
 }
 
 button {
-margin-right: 5px;
-padding: 5px 10px;
-border: none;
-background-color: #007bff;
-color: white;
-border-radius: 4px;
-cursor: pointer;
-}
-
-button:hover {
-opacity: 0.8;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 8px;
 }
 
 button:nth-child(1) {
-background-color: #dc3545;
+  background-color: #e53935;
+  color: white;
 }
+
 button:nth-child(2) {
-background-color: #ffc107;
-color: black;
+  background-color: #fdd835;
+  color: black;
 }
+
 button:nth-child(3) {
-background-color: #28a745;
+  background-color: #43a047;
+  color: white;
 }

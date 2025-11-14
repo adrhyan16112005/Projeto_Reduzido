@@ -23,7 +23,7 @@ const Login = ({ setAuthToken }) => {
   };
 
   return (
-    <div className={styles.loginContainer}>
+    <div className={styles.form-container}>
       <h2>Login</h2>
       {error && <p className={styles.errorMessage}>{error}</p>}
       <form onSubmit={handleLogin} className={styles.form}>

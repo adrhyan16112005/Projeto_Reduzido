@@ -8,7 +8,7 @@ function Header() {
       <nav className={styles.nav}>
         <Link to="/">Home</Link>
         <Link to="/perfil">Perfil</Link>
-        <Link to="/reservas">Reservas</Link>
+        <Link to="/minhas-reservas">Minhas Reservas</Link>
       </nav>
     </header>
   );

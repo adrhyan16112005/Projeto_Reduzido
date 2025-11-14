@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './AtualizarPerfil.module.css';
 
+
 const AtualizarPerfil = ({ authToken }) => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -42,7 +43,7 @@ const AtualizarPerfil = ({ authToken }) => {
   };
 
   return (
-    <div className={styles.atualizarContainer}>
+    <div className={styles.form-container}>
       <h2>Atualizar Perfil</h2>
       <form onSubmit={handleAtualizar} className={styles.form}>
         <div className={styles.inputGroup}>
