@@ -1,8 +1,13 @@
-import AppRoutes from "./Routes.jsx";
+import React from 'react';
+import AppRoutes from './Routes'; 
+import './index.css';
+import Header from './components/Header/Header';
 
 function App() {
   return (
-    <div>
+    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
+      <Header />
+      <h1>Projeto Reservas de Mesas</h1>
       <AppRoutes />
     </div>
   );
