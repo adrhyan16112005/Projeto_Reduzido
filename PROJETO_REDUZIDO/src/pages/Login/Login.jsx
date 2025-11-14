@@ -1,32 +1,53 @@
-import React, { useState } from "react";
-import styles from "./Login.module.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import styles from './Login.module.css';
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+const Login = ({ setAuthToken }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Login:", { email, senha });
+    try {
+      const response = await axios.post('/auth/login', { email, password });
+      if (response.data.erro) {
+        setError(response.data.mensagem);
+      } else {
+        setAuthToken(response.data.token); 
+        alert('Login bem-sucedido!');
+      }
+    } catch (err) {
+      setError('Erro ao realizar login');
+    }
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.loginContainer}>
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="E-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-        />
-        <button type="submit">Entrar</button>
+      {error && <p className={styles.errorMessage}>{error}</p>}
+      <form onSubmit={handleLogin} className={styles.form}>
+        <div className={styles.inputGroup}>
+          <label>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.inputGroup}>
+          <label>Senha</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className={styles.input}
+          />
+        </div>
+        <button type="submit" className={styles.submitButton}>Login</button>
       </form>
     </div>
   );

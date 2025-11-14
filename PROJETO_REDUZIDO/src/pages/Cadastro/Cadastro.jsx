@@ -1,43 +1,64 @@
-import React, { useState } from "react";
-import styles from "./Cadastro.module.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import styles from './Cadastro.module.css';
 
-const Cadastro = () => {
-  const [form, setForm] = useState({ nome: "", email: "", senha: "" });
+const Cadastro = ({ setAuthToken }) => {
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
+  const handleCadastro = async (e) => {
     e.preventDefault();
-    console.log("Cadastro:", form);
+    try {
+      const response = await axios.post('/auth/cadastro', { nome, email, password });
+      if (response.data.erro) {
+        setError(response.data.mensagem);
+      } else {
+        setAuthToken(response.data.token); // Salva o token
+        alert('Cadastro realizado com sucesso!');
+      }
+    } catch (err) {
+      setError('Erro ao realizar cadastro');
+    }
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.cadastroContainer}>
       <h2>Cadastro</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="nome"
-          placeholder="Nome"
-          value={form.nome}
-          onChange={handleChange}
-        />
-        <input
-          name="email"
-          placeholder="E-mail"
-          type="email"
-          value={form.email}
-          onChange={handleChange}
-        />
-        <input
-          name="senha"
-          placeholder="Senha"
-          type="password"
-          value={form.senha}
-          onChange={handleChange}
-        />
-        <button type="submit">Cadastrar</button>
+      {error && <p className={styles.errorMessage}>{error}</p>}
+      <form onSubmit={handleCadastro} className={styles.form}>
+        <div className={styles.inputGroup}>
+          <label>Nome</label>
+          <input
+            type="text"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            required
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.inputGroup}>
+          <label>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.inputGroup}>
+          <label>Senha</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className={styles.input}
+          />
+        </div>
+        <button type="submit" className={styles.submitButton}>Cadastrar</button>
       </form>
     </div>
   );
