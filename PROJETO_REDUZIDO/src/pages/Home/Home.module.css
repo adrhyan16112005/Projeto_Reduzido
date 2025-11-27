@@ -1,17 +1,26 @@
 .container {
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
+  min-height: 100vh;       
+  display: flex;
+  justify-content: center;  
+  align-items: center;     
   padding: 30px 20px;
+
+  background-image: url("https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/28/70/94/caption.jpg?w=900&h=-1&s=1");
+  background-size: cover;    
+  background-position: center;
+  background-repeat: no-repeat; 
 }
 
 .hero {
-  background-color: var(--white);
+  background-color: rgba(255, 255, 255, 0.92); 
   padding: 40px 30px;
   border-radius: 12px;
   text-align: center;
   border-left: 5px solid var(--verde-primary);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  max-width: 600px;
+  width: 100%;
 }
 
 .title {
@@ -58,22 +67,4 @@
 
 .btnSecondary:hover {
   background-color: var(--verde-pastel);
-}
-
-.infoSection {
-  background-color: var(--verde-soft);
-  margin-top: 30px;
-  padding: 25px;
-  border-radius: 12px;
-  border-left: 5px solid var(--verde-light);
-}
-
-.infoSection h2 {
-  color: var(--verde-primary);
-  margin-bottom: 10px;
-}
-
-.infoSection p {
-  color: var(--text-medium);
-  line-height: 1.6;
 }
