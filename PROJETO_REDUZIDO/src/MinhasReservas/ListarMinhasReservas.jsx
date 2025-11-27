@@ -1,43 +1,79 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ListarMinhasReservas.css';
 
-const ListarMinhasReservas = () => {
+const STORAGE_KEY = 'reservas_app_v1';
 
-  const reservas = [
-    { idReserva: 101, mesa: 5, data: "27/10/2025" },
-    { idReserva: 102, mesa: 2, data: "27/10/2025" },
-  ];
+const ListarMinhasReservas = () => {
+  const [reservas, setReservas] = useState([]);
+
+  useEffect(() => {
+    const atuais = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    setReservas(atuais);
+  }, []);
+
+  const handleCancelar = (idReserva) => {
+    if (!window.confirm('Deseja cancelar essa reserva?')) return;
+    const atualizados = reservas.filter(r => r.idReserva !== idReserva);
+    setReservas(atualizados);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(atualizados));
+  };
+
+  const handleDetalhes = (res) => {
+    alert(
+      `Reserva: ${res.idReserva}\nMesa: ${res.mesa}\nData: ${res.data}\nHorário: ${res.horario}\nCliente: ${res.cliente}\nQtd: ${res.quantidade}`
+    );
+  };
+
+  const handleEditar = (res) => {
+    const novaData = prompt('Nova data (YYYY-MM-DD):', res.data);
+    const novoHorario = prompt('Novo horário (HH:MM):', res.horario);
+    if (!novaData || !novoHorario) return;
+    const atualizados = reservas.map(r => {
+      if (r.idReserva === res.idReserva) {
+        return { ...r, data: novaData, horario: novoHorario };
+      }
+      return r;
+    });
+    setReservas(atualizados);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(atualizados));
+  };
 
   return (
     <div className="listar-container">
-      <h2>Minhas Reservas – Semana 27/10</h2>
+      <h2>Minhas Reservas</h2>
 
       <table>
         <thead>
           <tr>
             <th>Nº Mesa</th>
-            <th>Nº Reserva</th>
+            <th>Nº da Reserva</th>
             <th>Data</th>
+            <th>Horário</th>
             <th>Ações</th>
           </tr>
         </thead>
 
         <tbody>
-          {reservas.map((res) => (
-            <tr key={res.idReserva}>
-              <td>{res.mesa}</td>
-              <td>{res.idReserva}</td>
-              <td>{res.data}</td>
+          {reservas.length === 0 && (
+            <tr>
+              <td colSpan="5" style={{ textAlign:'center' }}>Nenhuma reserva encontrada.</td>
+            </tr>
+          )}
 
+          {reservas.map((r) => (
+            <tr key={r.idReserva}>
+              <td>{r.mesa}</td>
+              <td>{r.idReserva}</td>
+              <td>{r.data}</td>
+              <td>{r.horario}</td>
               <td>
-                <button>Cancelar</button>
-                <button>Editar</button>
-                <button>Ver Detalhes</button>
+                <button onClick={() => handleCancelar(r.idReserva)}>Cancelar</button>
+                <button onClick={() => handleEditar(r)}>Editar</button>
+                <button onClick={() => handleDetalhes(r)}>Ver Detalhes</button>
               </td>
             </tr>
           ))}
         </tbody>
-
       </table>
     </div>
   );
